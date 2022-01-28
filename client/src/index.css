@@ -11,3 +11,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.jumbotron {
+  background-image: url(beerbubbles.jpg);
+  background-size:contain;
+  background-position:center;
+}
