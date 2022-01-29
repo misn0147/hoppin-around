@@ -24,6 +24,11 @@ function NavBar() {
                             </Link>
                         </span>
                         <span className="nav-item">
+                            <Link to="/locationSearch" className="nav-link mx-auto">
+                                Search by City
+                            </Link>
+                        </span>
+                        <span className="nav-item">
                             <Link to="/login" className="nav-link mx-auto">
                                 Login
                             </Link>

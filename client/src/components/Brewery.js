@@ -6,7 +6,7 @@ function Brewery({ brewery }) {
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-    const { id, name, city, phone, postal_code, state, street, website_url } =
+    const { id, name, city, phone,  state,  website_url } =
         brewery;
 
     const formatNumber = (phoneString) => {
@@ -17,6 +17,15 @@ function Brewery({ brewery }) {
         }
         return null;
     };
+
+    const breweryAddress =
+        brewery.street +
+        ", " +
+        brewery.city +
+        ", " +
+        brewery.state +
+        " " +
+        brewery.postal_code;
 
     return (
         <>
@@ -38,18 +47,27 @@ function Brewery({ brewery }) {
                 </Modal.Header>
                 <Modal.Body>
                     <Row>
-                        <span className="mr-2">
-                            {street}, {city}, {state}, {postal_code}
-                        </span>
+                        <a
+                            className="mr-2 text-decoration-none"
+                            href={
+                                "https://www.google.com/maps/place/" +
+                                breweryAddress
+                            }
+                            rel="noopener noreferrer"
+                            target="_blank"
+                            aria-label="Brewery address"
+                        >
+                            📍 {breweryAddress}
+                        </a>
                     </Row>
                     <Row>
                         {website_url ? (
                             <a
                                 className="mr-2 text-decoration-none"
-                                aria-label="Brewery phone number"
+                                aria-label="Brewery website"
                                 href={website_url}
                                 target="_blank"
-                                rel="noreferrer" 
+                                rel="noreferrer"
                             >
                                 🌐 {website_url}
                             </a>
