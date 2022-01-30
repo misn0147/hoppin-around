@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Brewery from "./Brewery";
 
-const DEFAULT_SEARCH = {search: "Austin, TX"};
+const DEFAULT_SEARCH = { search: "Austin, TX" };
 
 export default function CoordinateSearch() {
     const [locationSearch, setLocationSearch] = useState(DEFAULT_SEARCH);
@@ -51,25 +51,29 @@ export default function CoordinateSearch() {
 
     return (
         <>
-            <form className="col-6 mx-auto mt-3">
+            <form className="col-6 mx-auto mt-3 ">
                 <div className="mb-3">
-                    <label htmlFor="search" className="form-label">
-                        Search for a city or zip code: 
-                    </label>
+                    <h5 htmlFor="search" className="form-label">
+                        Search for a city or zip code:
+                    </h5>
                     <input
                         value={locationSearch.search}
                         name="search"
                         onChange={handleChange}
                         type="search"
-                        className="form-control"
+                        className="form-control form-color"
                         id="search"
                         aria-describedby="search"
                     />
                 </div>
             </form>
-            <div className="row ml-0 mr-0 mb-3">
-                <div className="col-8 mx-auto">
-                    <ul className="list-group ml-2">{displayBreweries()}</ul>
+            <div>
+                <div className="row ml-0 mr-0 mb-3">
+                    <div className="col-8 mx-auto">
+                        <ul className="list-group ml-2">
+                            {displayBreweries()}
+                        </ul>
+                    </div>
                 </div>
             </div>
         </>

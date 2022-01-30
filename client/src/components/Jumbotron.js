@@ -5,19 +5,18 @@ function Jumbotron() {
         <>
             <div>
                 <div className="jumbotron py-5">
-                    <div className="row">
-                        <div className="col-8 px-5">
-                            <h1 className="display-4">
+                    <div className="row no-gutters">
+                        <div className="col-9 px-5">
+                            <h1 className="display-4 title-font">
                                 <strong>Hoppin' Around</strong>
                             </h1>
-                            <p className="lead">
+                            <h2 className="lead subtitle-font">
                                 <strong>
-                                    What's hoppin? Select a state to discover
-                                    some cool local breweries!
+                                    What's hoppin? Search by state or city to
+                                    discover some cool local breweries!
                                 </strong>
-                            </p>
+                            </h2>
                         </div>
-                        <div className="col-4"></div>
                     </div>
                 </div>
             </div>

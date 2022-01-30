@@ -59,10 +59,10 @@ function Brewery({ brewery }) {
         <>
             <button
                 key={id}
-                className="list-group-item list-group-item-secondary container"
+                className="list-group-item list-group-item-secondary container grid-color"
                 onClick={handleShow}
             >
-                <div className="row">
+                <div className="row ">
                     <div className="col">{name}</div>
                     <div className="col">
                         {city}, {state}
