@@ -35,7 +35,7 @@ function Home() {
     
             <form className="col-6 mx-auto mt-3">
                 <select
-                    className="form-select"
+                    className="form-select form-color"
                     value={selectedState}
                     name="stateName"
                     onChange={handleChange}
@@ -97,6 +97,7 @@ function Home() {
                     <option value="wyoming">Wyoming</option>
                 </select>
             </form>
+            <br></br>
             <div className="row ml-0 mr-0 mb-3">
                 <div className="col-8 mx-auto">
                     <ul className="list-group ml-2">{displayBreweries()}</ul>
