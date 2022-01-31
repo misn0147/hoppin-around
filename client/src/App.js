@@ -8,10 +8,11 @@ import {
 import NavBar from "./components/NavBar";
 import Login from "./components/Login";
 import Register from "./components/Register";
-import Home from "./components/Home";
+import StateSearch from "./components/StateSearch";
 import Jumbotron from "./components/Jumbotron";
 import AuthContext from "./contexts/AuthContext";
 import CoordinateSearch from "./components/CoordinatesSearch";
+import Home from "./components/Home";
 
 function App() {
     const [userStatus, setUserStatus] = useState();
@@ -40,8 +41,19 @@ function App() {
                         <Route exact path="/">
                             <Home />
                         </Route>
+                        <Route path="/stateSearch">
+                        {userStatus?.user ? (
+                                <StateSearch />
+                            ) : (
+                                <Redirect to="/login" />
+                            )}
+                        </Route>
                         <Route path="/locationSearch">
+                            {userStatus?.user ? (
                                 <CoordinateSearch />
+                            ) : (
+                                <Redirect to="/login" />
+                            )}
                         </Route>
                     </Switch>
                 </AuthContext.Provider>
@@ -51,10 +63,3 @@ function App() {
 }
 
 export default App;
-
-
-// {userStatus?.user ? (
-//     <CoordinateSearch />
-// ) : (
-//     <Redirect to="/login" />
-// )}

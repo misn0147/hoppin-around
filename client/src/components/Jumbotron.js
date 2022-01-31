@@ -12,8 +12,7 @@ function Jumbotron() {
                             </h1>
                             <h2 className="lead subtitle-font">
                                 <strong>
-                                    What's hoppin? Search by city or state to
-                                    discover some cool local breweries!
+                                    Are you a fan of beer? Then you've found the perfect site where you can learn about beer brewing and discover local breweries.
                                 </strong>
                             </h2>
                         </div>
