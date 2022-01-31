@@ -55,16 +55,16 @@ function Login() {
             ))}
             
         <form onSubmit={handleSubmit}>
-            <div className="container">
-            <div>You must be logged in to hop around!</div>
+            <div className="container col-4">
+            <h5>You must be logged in to hop around!</h5>
             <div className="mb-2">
-                <label htmlFor="username" className="form-label">Username</label>
-                <input type="text" id="username" name="username" className="form-control" required
+                <label htmlFor="username" className="form-label">Username:</label>
+                <input type="text" id="username" name="username" className="form-control form-color" required
                     onChange={(event) => setUsername(event.target.value)} />
             </div>
             <div className="mb-2">
-                <label htmlFor="password" className="form-label">Password</label>
-                <input type="password" id="password" name="password" className="form-control" required
+                <label htmlFor="password" className="form-label">Password:</label>
+                <input type="password" id="password" name="password" className="form-control form-color" required
                     onChange={(event) => setPassword(event.target.value)} />
             </div>
             <div>

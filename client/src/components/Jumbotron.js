@@ -12,7 +12,7 @@ function Jumbotron() {
                             </h1>
                             <h2 className="lead subtitle-font">
                                 <strong>
-                                    What's hoppin? Search by state or city to
+                                    What's hoppin? Search by city or state to
                                     discover some cool local breweries!
                                 </strong>
                             </h2>

@@ -24,24 +24,24 @@ function App() {
                     <NavBar />
                     <Switch>
                         <Route path="/login">
-                            {userStatus?.user ? <Redirect to="/" /> : <Login />}
+                            {userStatus?.user ? (
+                                <Redirect to="/locationSearch" />
+                            ) : (
+                                <Login />
+                            )}
                         </Route>
                         <Route path="/register">
                             {userStatus?.user ? (
-                                <Redirect to="/" />
+                                <Redirect to="/locationSearch" />
                             ) : (
                                 <Register />
                             )}
                         </Route>
                         <Route exact path="/">
-                            {userStatus?.user ? (
-                                <Home />
-                            ) : (
-                                <Redirect to="/login" />
-                            )}
+                            <Home />
                         </Route>
                         <Route path="/locationSearch">
-                            <CoordinateSearch />
+                                <CoordinateSearch />
                         </Route>
                     </Switch>
                 </AuthContext.Provider>
@@ -51,3 +51,10 @@ function App() {
 }
 
 export default App;
+
+
+// {userStatus?.user ? (
+//     <CoordinateSearch />
+// ) : (
+//     <Redirect to="/login" />
+// )}
