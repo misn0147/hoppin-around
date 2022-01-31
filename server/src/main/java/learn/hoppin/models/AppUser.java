@@ -16,19 +16,19 @@ public class AppUser implements UserDetails {
     private boolean disabled;
     private List<String> authorities = new ArrayList<>();
 
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return authorities.stream()
+                .map(i -> new SimpleGrantedAuthority(i))
+                .collect(Collectors.toList());
+    }
+
     public int getId(){
         return id;
     }
 
     public void setId(int id){
         this.id = id;
-    }
-
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return authorities.stream()
-                .map(i -> new SimpleGrantedAuthority(i))
-                .collect(Collectors.toList());
     }
 
     public List<String> getAuthorityNames(){
@@ -44,12 +44,16 @@ public class AppUser implements UserDetails {
         return password;
     }
 
+    public void setPassword(String password){
+        this.password = password;
+    }
+
     @Override
     public String getUsername() {
         return username;
     }
 
-    public void setUsername(){
+    public void setUsername(String username){
         this.username = username;
     }
 
