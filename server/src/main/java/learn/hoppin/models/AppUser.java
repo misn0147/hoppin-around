@@ -31,33 +31,58 @@ public class AppUser implements UserDetails {
                 .collect(Collectors.toList());
     }
 
+    public List<String> getAuthorityNames(){
+        return new ArrayList<>(authorities);
+    }
+
+    public void setAuthorityNames(List<String> authorities){
+        this.authorities = authorities;
+    }
+
     @Override
     public String getPassword() {
-        return null;
+        return password;
     }
 
     @Override
     public String getUsername() {
-        return null;
+        return username;
+    }
+
+    public void setUsername(){
+        this.username = username;
     }
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return !disabled;
+    }
+
+    public boolean isDisabled(){
+        return disabled;
+    }
+
+    public void setDisabled(boolean disabled){
+        this.disabled = disabled;
+    }
+
+    public boolean hasAuthority(String authority){
+        return authorities.stream()
+                .anyMatch(a -> a.equals(authority));
     }
 }

@@ -11,5 +11,5 @@ public class AppUserRepository {
     public AppUserRepository(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
-    
+
 }
