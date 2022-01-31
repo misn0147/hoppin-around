@@ -6,8 +6,7 @@ function Brewery({ brewery }) {
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-    const { id, name, city, phone, postal_code, state, street, website_url } =
-        brewery;
+    const { id, name, city, phone, state, website_url, brewery_type } = brewery;
 
     const formatNumber = (phoneString) => {
         let cleaned = ("", phoneString).replace(/\D/g, "");
@@ -18,15 +17,54 @@ function Brewery({ brewery }) {
         return null;
     };
 
+    const typeFormat = () => {
+        switch (brewery_type) {
+            case "micro":
+                return "Microbrewery";
+            case "nano":
+                return "Nanonrewery";
+            case "regional":
+                return "Regional Brewery";
+            case "brewpub":
+                return "Brewpub";
+            case "large":
+                return "Large Brewery";
+            case "planning":
+                return "Planning";
+            case "bar":
+                return "Bar";
+            case "contract":
+                return "Contract";
+            case "proprietor":
+                return "Proprietor";
+            case "taproom":
+                return "Taproom";
+            case "closed":
+                return "Closed";
+            default:
+                return null;
+        }
+    };
+
+    const breweryAddress =
+        brewery.street +
+        ", " +
+        brewery.city +
+        ", " +
+        brewery.state +
+        " " +
+        brewery.postal_code;
+
     return (
         <>
             <button
                 key={id}
-                className="list-group-item list-group-item-secondary container"
+                className="list-group-item list-group-item-secondary container grid-color"
                 onClick={handleShow}
             >
-                <div className="row">
+                <div className="row ">
                     <div className="col">{name}</div>
+                    <div className="col">{typeFormat({ brewery_type })}</div>
                     <div className="col">
                         {city}, {state}
                     </div>
@@ -38,18 +76,27 @@ function Brewery({ brewery }) {
                 </Modal.Header>
                 <Modal.Body>
                     <Row>
-                        <span className="mr-2">
-                            {street}, {city}, {state}, {postal_code}
-                        </span>
+                        <a
+                            className="mr-2 text-decoration-none"
+                            href={
+                                "https://www.google.com/maps/place/" +
+                                breweryAddress
+                            }
+                            rel="noopener noreferrer"
+                            target="_blank"
+                            aria-label="Brewery address"
+                        >
+                            📍 {breweryAddress}
+                        </a>
                     </Row>
                     <Row>
                         {website_url ? (
                             <a
                                 className="mr-2 text-decoration-none"
-                                aria-label="Brewery phone number"
+                                aria-label="Brewery website"
                                 href={website_url}
                                 target="_blank"
-                                rel="noreferrer" 
+                                rel="noreferrer"
                             >
                                 🌐 {website_url}
                             </a>
@@ -69,6 +116,15 @@ function Brewery({ brewery }) {
                             </a>
                         ) : (
                             <span>📞 Not available</span>
+                        )}
+                    </Row>
+                    <Row>
+                        {brewery_type ? (
+                            <span className="mr-2">
+                                Type: {typeFormat({ brewery_type })}
+                            </span>
+                        ) : (
+                            <span>Type: Unknown</span>
                         )}
                     </Row>
                 </Modal.Body>
