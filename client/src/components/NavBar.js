@@ -23,8 +23,13 @@ function NavBar() {
                     id="navbarNavAltMarkup"
                 >
                     <div className="navbar-nav mr-auto">
-                        <span className="nav-item">
+                    <span className="nav-item">
                             <Link to="/" className="nav-link mx-auto">
+                                Home
+                            </Link>
+                        </span>
+                        <span className="nav-item">
+                            <Link to="/stateSearch" className="nav-link mx-auto">
                                 Search by State
                             </Link>
                         </span>

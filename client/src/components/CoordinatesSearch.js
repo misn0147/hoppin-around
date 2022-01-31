@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Brewery from "./Brewery";
+import React from "react";
 
 const DEFAULT_SEARCH = { search: "Austin, TX" };
 
@@ -28,12 +29,10 @@ export default function CoordinateSearch() {
                     })
                     .catch((error) => {
                         console.error(error.message);
-                        alert("There was an error fetching the data");
                     });
             })
             .catch((error) => {
                 console.error(error.message);
-                alert("There was an error fetching the data");
             });
     }, [locationSearch]);
 
@@ -48,7 +47,6 @@ export default function CoordinateSearch() {
             <Brewery key={brewery.id} brewery={brewery} />
         ));
     };
-
     return (
         <>
             <form className="col-6 mx-auto mt-3 ">
