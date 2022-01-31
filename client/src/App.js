@@ -41,7 +41,7 @@ function App() {
                             )}
                         </Route>
                         <Route path="/locationSearch">
-                          <CoordinateSearch />
+                            <CoordinateSearch />
                         </Route>
                     </Switch>
                 </AuthContext.Provider>

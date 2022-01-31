@@ -64,6 +64,7 @@ function Brewery({ brewery }) {
             >
                 <div className="row ">
                     <div className="col">{name}</div>
+                    <div className="col">{typeFormat({ brewery_type })}</div>
                     <div className="col">
                         {city}, {state}
                     </div>
