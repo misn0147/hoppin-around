@@ -1,7 +1,17 @@
-import React from "react";
+import { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
+import AuthContext from "../contexts/AuthContext";
+import jwtDecode from "jwt-decode";
 
 function NavBar() {
+    const [userStatus, setUserStatus] = useContext(AuthContext);
+    useEffect(() => {
+        const token = localStorage.getItem("token");
+        if (token) {
+            setUserStatus({ user: jwtDecode(token) });
+        }
+    }, [setUserStatus]);
+
     return (
         <>
             <nav className="navbar navbar-expand-lg nav-color">
@@ -15,7 +25,7 @@ function NavBar() {
                     aria-label="Toggle navigation"
                 >
                     <span className="navbar-toggler-icon">
-                    <i className="fas fa-beer"></i>
+                        <i className="fas fa-beer"></i>
                     </span>
                 </button>
                 <div
@@ -23,13 +33,16 @@ function NavBar() {
                     id="navbarNavAltMarkup"
                 >
                     <div className="navbar-nav mr-auto">
-                    <span className="nav-item">
+                        <span className="nav-item">
                             <Link to="/" className="nav-link mx-auto">
                                 Home
                             </Link>
                         </span>
                         <span className="nav-item">
-                            <Link to="/stateSearch" className="nav-link mx-auto">
+                            <Link
+                                to="/stateSearch"
+                                className="nav-link mx-auto"
+                            >
                                 Search by State
                             </Link>
                         </span>
@@ -41,16 +54,40 @@ function NavBar() {
                                 Search by City
                             </Link>
                         </span>
-                        <span className="nav-item">
-                            <Link to="/login" className="nav-link mx-auto">
-                                Login
-                            </Link>
-                        </span>
-                        <span className="nav-item">
-                            <Link to="/register" className="nav-link mx-auto">
-                                Register
-                            </Link>
-                        </span>
+                        {userStatus ? 
+                            <>
+                            <span className="nav-item">
+                                    <span
+                                        onClick={() => {
+                                            setUserStatus(null);
+                                            localStorage.removeItem("token");
+                                        }}
+                                        className="nav-link mx-auto"
+                                    >
+                                        Log Out
+                                    </span>
+                                </span>
+                                </>
+                        : 
+                            <>
+                                <span className="nav-item">
+                                    <Link
+                                        to="/login"
+                                        className="nav-link mx-auto"
+                                    >
+                                        Login
+                                    </Link>
+                                </span>
+                                <span className="nav-item">
+                                    <Link
+                                        to="/register"
+                                        className="nav-link mx-auto"
+                                    >
+                                        Register
+                                    </Link>
+                                </span>
+                            </>
+                        }
                     </div>
                 </div>
             </nav>

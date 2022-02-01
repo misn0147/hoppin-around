@@ -32,11 +32,11 @@ function Login({userStatus}) {
 
         // This code executes if the request is successful
         if (response.status === 200) {
-            const { jwt_token } = await response.json();
-            console.log(jwtDecode(jwt_token));
+            const { jwt } = await response.json();
+            console.log(jwtDecode(jwt));
 
-            localStorage.setItem("token", jwt_token);
-            setUserStatus({ user: jwtDecode(jwt_token) });
+            localStorage.setItem("token", jwt);
+            setUserStatus({ user: jwtDecode(jwt) });
             history.push("/");
         } else if (response.status === 400) {
             const errors = await response.json();

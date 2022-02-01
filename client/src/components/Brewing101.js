@@ -6,9 +6,9 @@ const Brewing101 = () => (
             className="responsive-iframe"
             src="https://www.youtube.com/embed/Voi7kOKxoss"
             title="YouTube video player"
-            frameborder="0"
+            frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen
+            allowFullScreen
         ></iframe>
     </div>
 );

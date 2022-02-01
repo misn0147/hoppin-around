@@ -119,7 +119,7 @@ public class AppUserService implements UserDetailsService {
         int letters = 0;
         int others = 0;
         for (char c : user.getPassword().toCharArray()) {
-            if (Character.isLetter(c)) {
+            if (Character.isDigit(c)) {
                 digits++;
             } else if (Character.isLetter(c)) {
                 letters++;
