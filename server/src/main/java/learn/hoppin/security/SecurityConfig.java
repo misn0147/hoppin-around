@@ -18,15 +18,11 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final JwtConverter converter;
-    private final String[] origins;
 
-    public SecurityConfig(JwtConverter converter, @Value("${bg.allowed_origins}") String allowedOrigins) {
+
+    public SecurityConfig(JwtConverter converter) {
         this.converter = converter;
-        if (allowedOrigins == null || allowedOrigins.isBlank()) {
-            origins = new String[0];
-        } else {
-            origins = allowedOrigins.split("\\s*,\\s*");
-        }
+
     }
 
     @Override
@@ -52,17 +48,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected AuthenticationManager authenticationManager() throws Exception {
         return super.authenticationManager();
     }
-
-    @Bean
-    public WebMvcConfigurer corsConfigurer() {
-        return new WebMvcConfigurer() {
-            @Override
-            public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**")
-                        .allowedMethods("DELETE", "GET", "POST", "PUT")
-                        .allowedOrigins(origins)
-                        .allowCredentials(true);
-            }
-        };
-    }
+    
 }
