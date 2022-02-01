@@ -61,8 +61,8 @@ public class AppUserController {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
 
-        var existing = service.findByAppUserId(user.getId())
+        var existing = service.findByAppUserId(user.getId());
 
     }
-    )
+
 }

@@ -42,7 +42,7 @@ code {
 }
 
 .jumbotron {
-  background-image: url(./images/beerbubbles.jpg);
+  background-image: url(../public/images/beerbubbles.jpg);
   background-size:contain;
   background-position:center;
   margin-bottom: 0;

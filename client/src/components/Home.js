@@ -40,15 +40,15 @@ function Home() {
                 <Brewing101 />
             </div>
             <h2 className="subtitle-font pl-2">Beer Trivia</h2>
-            <div class="container mb-5">
+            <div className="container mb-5">
                 <div className="row">
                     {trivia.map((question) => (
-                        <div class="flip-card m-2">
-                            <div class="flip-card-inner">
-                                <div class="flip-card-front">
+                        <div className="flip-card m-2">
+                            <div className="flip-card-inner">
+                                <div className="flip-card-front">
                                     <h5 className="p-3">{question.question}</h5>
                                 </div>
-                                <div class="flip-card-back">
+                                <div className="flip-card-back">
                                     <h5 className="p-4">{question.answer}</h5>
                                 </div>
                             </div>
