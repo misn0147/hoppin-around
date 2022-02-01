@@ -47,6 +47,7 @@ export default function CoordinateSearch() {
             <Brewery key={brewery.id} brewery={brewery} />
         ));
     };
+    
     return (
         <>
             <form className="col-6 mx-auto mt-3 ">

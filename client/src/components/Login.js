@@ -4,7 +4,7 @@ import jwtDecode from 'jwt-decode';
 import AuthContext from "../contexts/AuthContext";
 import Error from "./Error";
 
-function Login() {
+function Login({userStatus}) {
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
