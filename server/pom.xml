@@ -5,8 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>learn</groupId>
-    <artifactId>board-games-api</artifactId>
-    <version>0.4.2</version>
+    <artifactId>hoppin</artifactId>
+    <version>1.0-SNAPSHOT</version>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
