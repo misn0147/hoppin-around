@@ -3,13 +3,16 @@ package learn.hoppin.domain;
 
 import learn.hoppin.data.AppUserRepository;
 import learn.hoppin.models.AppUser;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class AppUserService  {
+public class AppUserService implements UserDetailsService {
 //implement UserDetails for security if needed
 
     private final AppUserRepository repository;
@@ -20,31 +23,31 @@ public class AppUserService  {
         this.encoder = encoder;
     }
 
-    public List<AppUser> findAll(){
+    public List<AppUser> findAll() {
         return repository.findAll();
     }
 
-    public List<String> findAllRoles(){
+    public List<String> findAllRoles() {
         return repository.findAllRoles();
     }
 
-    public AppUser findByAppUserId(int id){
+    public AppUser findByAppUserId(int id) {
         return repository.findByAppUserId(id);
     }
 
-    public Result<AppUser> add(AppUser user){
+    public Result<AppUser> add(AppUser user) {
 
         Result<AppUser> result = validateWithoutPassword(user);
-        if (!result.isSuccess()){
+        if (!result.isSuccess()) {
             return result;
         }
 
         result = validatePassword(user);
-        if (!result.isSuccess()){
+        if (!result.isSuccess()) {
             return result;
         }
 
-        if (user.getId() != 0){
+        if (user.getId() != 0) {
             result.addErrorMessage("user id cannot be set before user creation");
             return result;
         }
@@ -52,7 +55,7 @@ public class AppUserService  {
         user.setPassword(encoder.encode(user.getPassword()));
 
         user = repository.add(user);
-        if (user == null){
+        if (user == null) {
             result.addErrorMessage("user not created");
         }
         result.setPayload(user);
@@ -60,39 +63,39 @@ public class AppUserService  {
         return result;
     }
 
-    public Result<AppUser> update(AppUser user){
+    public Result<AppUser> update(AppUser user) {
         Result<AppUser> result = validateWithoutPassword(user);
-        if(!result.isSuccess()){
+        if (!result.isSuccess()) {
             return result;
         }
 
-        if (user.getId() <= 0){
+        if (user.getId() <= 0) {
             result.addErrorMessage("user id must be set for update");
             return result;
         }
 
         boolean success = repository.update(user);
-        if (!success){
+        if (!success) {
             result.addErrorMessage("user not updated");
         }
 
         return result;
     }
 
-    public Result<AppUser> changePassword(AppUser user){
+    public Result<AppUser> changePassword(AppUser user) {
         Result<AppUser> result = validatePassword(user);
-        if (!result.isSuccess()){
+        if (!result.isSuccess()) {
             return result;
         }
 
-        if (user.getId() <= 0){
+        if (user.getId() <= 0) {
             result.addErrorMessage("user id must be set to change password");
             return result;
         }
 
         user.setPassword(encoder.encode(user.getPassword()));
         boolean success = repository.changePassword(user);
-        if (!success){
+        if (!success) {
             result.addErrorMessage("password not updated");
         }
         return result;
@@ -102,12 +105,12 @@ public class AppUserService  {
 
         var result = new Result<AppUser>();
 
-        if (user == null){
+        if (user == null) {
             result.addErrorMessage("user cannot be null");
             return result;
         }
 
-        if (user.getPassword() == null || user.getPassword().isBlank() || user.getPassword().length() < 8){
+        if (user.getPassword() == null || user.getPassword().isBlank() || user.getPassword().length() < 8) {
             result.addErrorMessage("password must be at least 8 characters");
             return result;
         }
@@ -115,17 +118,17 @@ public class AppUserService  {
         int digits = 0;
         int letters = 0;
         int others = 0;
-        for (char c : user.getPassword().toCharArray()){
-            if (Character.isLetter(c)){
+        for (char c : user.getPassword().toCharArray()) {
+            if (Character.isLetter(c)) {
                 digits++;
-            }else if (Character.isLetter(c)){
+            } else if (Character.isLetter(c)) {
                 letters++;
-            }else{
+            } else {
                 others++;
             }
         }
 
-        if (digits == 0 || letters == 0 || others == 0){
+        if (digits == 0 || letters == 0 || others == 0) {
             result.addErrorMessage("password must contain a digit, a letter, and a character");
         }
         return result;
@@ -134,18 +137,18 @@ public class AppUserService  {
     private Result<AppUser> validateWithoutPassword(AppUser user) {
         var result = new Result<AppUser>();
 
-        if (user == null){
+        if (user == null) {
             result.addErrorMessage("user cannot be null");
             return result;
         }
 
-        if (user.getUsername() == null || user.getUsername().isBlank()){
+        if (user.getUsername() == null || user.getUsername().isBlank()) {
             result.addErrorMessage("username is required");
             return result;
         }
 
         var existing = repository.findByUsername(user.getUsername());
-        if (existing != null && existing.getId() != user.getId()){
+        if (existing != null && existing.getId() != user.getId()) {
             result.addErrorMessage("username is already in use");
             return result;
         }
@@ -154,4 +157,14 @@ public class AppUserService  {
     }
 
 
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        var user = repository.findByUsername(username);
+
+        if (user == null || !user.isEnabled()) {
+            throw new UsernameNotFoundException("username " + username + " not found.");
+        }
+
+        return user;
+    }
 }
