@@ -10,9 +10,7 @@ function Login({userStatus}) {
     const [password, setPassword] = useState("");
     const [errors, setErrors] = useState([]);
 
-    const contextValue = useContext(AuthContext);
     const [, setUserStatus] = useContext(AuthContext);
-    console.log(contextValue);
 
     const history = useHistory();
 
@@ -33,7 +31,6 @@ function Login({userStatus}) {
         // This code executes if the request is successful
         if (response.status === 200) {
             const { jwt } = await response.json();
-            console.log(jwtDecode(jwt));
 
             localStorage.setItem("token", jwt);
             setUserStatus({ user: jwtDecode(jwt) });
