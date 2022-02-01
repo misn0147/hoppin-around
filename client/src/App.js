@@ -1,25 +1,65 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import {
+    BrowserRouter as Router,
+    Route,
+    Switch,
+    Redirect,
+} from "react-router-dom";
+import NavBar from "./components/NavBar";
+import Login from "./components/Login";
+import Register from "./components/Register";
+import StateSearch from "./components/StateSearch";
+import Jumbotron from "./components/Jumbotron";
+import AuthContext from "./contexts/AuthContext";
+import CoordinateSearch from "./components/CoordinatesSearch";
+import Home from "./components/Home";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [userStatus, setUserStatus] = useState();
+
+    return (
+        <>
+            <Router>
+                <AuthContext.Provider value={[userStatus, setUserStatus]}>
+                    <Jumbotron />
+                    <NavBar />
+                    <Switch>
+                        <Route path="/login">
+                            {userStatus?.user ? (
+                                <Redirect to="/locationSearch" />
+                            ) : (
+                                <Login />
+                            )}
+                        </Route>
+                        <Route path="/register">
+                            {userStatus?.user ? (
+                                <Redirect to="/locationSearch" />
+                            ) : (
+                                <Register />
+                            )}
+                        </Route>
+                        <Route exact path="/">
+                            <Home />
+                        </Route>
+                        <Route path="/stateSearch">
+                        {userStatus?.user ? (
+                                <StateSearch />
+                            ) : (
+                                <Redirect to="/login" />
+                            )}
+                        </Route>
+                        <Route path="/locationSearch">
+                            {userStatus?.user ? (
+                                <CoordinateSearch />
+                            ) : (
+                                <Redirect to="/login" />
+                            )}
+                        </Route>
+                    </Switch>
+                </AuthContext.Provider>
+            </Router>
+        </>
+    );
 }
 
 export default App;
