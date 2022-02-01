@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 
 @RestController
@@ -55,14 +56,43 @@ public class AppUserController {
     @PutMapping("/user/update")
     public ResponseEntity<Object> update(
             @RequestBody AppUser user,
-            @AuthenticationPrincipal AppUser principal){
+            @AuthenticationPrincipal AppUser principal) {
 
-        if(!principal.hasAuthority("ADMIN")){
+        if (!principal.hasAuthority("ADMIN")) {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
 
         var existing = service.findByAppUserId(user.getId());
+        if (existing == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
 
+        if (existing.isEnabled() && existing.hasAuthority("ADMIN")
+                && existing.getId() != principal.getId()) {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
+
+        var result = service.update(user);
+        if (!result.isSuccess()){
+            return new ResponseEntity<>(result.getMessages(), HttpStatus.BAD_REQUEST);
+        }
+
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @PutMapping("user/password")
+    public ResponseEntity<Object> changePassword(
+            @RequestBody HashMap<String, String> values,
+            @AuthenticationPrincipal AppUser principal){
+
+        principal.setPassword(values.get("password"));
+
+        var result = service.changePassword(principal);
+        if (!result.isSuccess()){
+            return new ResponseEntity<>(result.getMessages(), HttpStatus.BAD_REQUEST);
+        }
+
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
 }
