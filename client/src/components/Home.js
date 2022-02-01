@@ -43,7 +43,7 @@ function Home() {
             <div className="container mb-5">
                 <div className="row">
                     {trivia.map((question) => (
-                        <div className="flip-card m-2">
+                        <div className="flip-card m-2" key={question.question}>
                             <div className="flip-card-inner">
                                 <div className="flip-card-front">
                                     <h5 className="p-3">{question.question}</h5>
