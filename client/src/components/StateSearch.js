@@ -7,7 +7,7 @@ function StateSearch() {
 
     useEffect(() => {
         const where = selectedState.stateName;
-        fetch(`https://api.openbrewerydb.org/breweries?by_state=${where}`)
+        fetch(`https://api.openbrewerydb.org/breweries?by_state=${where}&per_page=50`)
             .then((response) => response.json())
             .then((data) => {
                 setBreweries(data);

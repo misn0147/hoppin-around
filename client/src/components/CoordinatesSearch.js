@@ -21,7 +21,7 @@ export default function CoordinateSearch() {
                 stringCoords.replace("[", "");
                 stringCoords.replace("]", "");
                 return fetch(
-                    `https://api.openbrewerydb.org/breweries?by_dist=${stringCoords}`
+                    `https://api.openbrewerydb.org/breweries?by_dist=${stringCoords}&per_page=50`
                 )
                     .then((response) => response.json())
                     .then((data) => {
