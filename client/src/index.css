@@ -65,11 +65,16 @@ code {
 }
 
 .title-font{
-  font-family: 'Sofia', cursive;
+  font-family: 'Metal Mania', cursive;
 }
 
 .subtitle-font{
   font-family: 'Tillana', cursive;
+  font-weight: 700;
+}
+
+.page-title-font{
+  font-family: 'Rancho', cursive;
 }
 
 .modal-content{

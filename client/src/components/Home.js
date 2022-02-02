@@ -51,11 +51,11 @@ function Home() {
     return (
         <>
             <div className="App">
-            <h2 className="subtitle-font pl-2">Learn to Brew</h2>
+            <h1 className="page-title-font pl-2 mt-2">Learn to Brew</h1>
             
                 <Brewing101 />
             </div>
-            <h2 className="subtitle-font pl-2">Beer Trivia</h2>
+            <h1 className="page-title-font pl-2">Beer Trivia</h1>
             <div className="container mb-5 py-5 card-container">
                 <div className="row d-flex justify-content-around">
                     {trivia.map((question) => (

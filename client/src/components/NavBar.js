@@ -34,14 +34,14 @@ function NavBar() {
                 >
                     <div className="navbar-nav mr-auto">
                         <span className="nav-item">
-                            <Link to="/" className="nav-link mx-auto">
+                            <Link to="/" className="nav-link mx-auto h5">
                                 Home
                             </Link>
                         </span>
                         <span className="nav-item">
                             <Link
                                 to="/stateSearch"
-                                className="nav-link mx-auto"
+                                className="nav-link mx-auto h5"
                             >
                                 Search by State
                             </Link>
@@ -49,7 +49,7 @@ function NavBar() {
                         <span className="nav-item">
                             <Link
                                 to="/locationSearch"
-                                className="nav-link mx-auto"
+                                className="nav-link mx-auto h5"
                             >
                                 Search by City
                             </Link>
@@ -62,7 +62,7 @@ function NavBar() {
                                             setUserStatus(null);
                                             localStorage.removeItem("token");
                                         }}
-                                        className="nav-link mx-auto"
+                                        className="nav-link mx-auto h5"
                                     >
                                         Log Out
                                     </span>
@@ -73,7 +73,7 @@ function NavBar() {
                                 <span className="nav-item">
                                     <Link
                                         to="/login"
-                                        className="nav-link mx-auto"
+                                        className="nav-link mx-auto h5"
                                     >
                                         Login
                                     </Link>
@@ -81,7 +81,7 @@ function NavBar() {
                                 <span className="nav-item">
                                     <Link
                                         to="/register"
-                                        className="nav-link mx-auto"
+                                        className="nav-link mx-auto h5"
                                     >
                                         Register
                                     </Link>
