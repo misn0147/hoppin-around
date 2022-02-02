@@ -31,19 +31,35 @@ function Home() {
                 " In the early days, beer was only available to buy in kegs and bottles. Which brewery was the first to sell beer in cans in the United States?",
             answer: "Krueger Brewing Company, from Newark, New Jersey, who first sold beer in cans in 1935.",
         },
+        {
+            question:
+                "Where Is The Coors Brewing Company Located?",
+            answer: "Golden, Colorado",
+        },
+        {
+            question:
+                "What does IPA stand for?",
+            answer: "India Pale Ale",
+        },
+        {
+            question:
+                "Beer contains ample amounts of which vitamin?",
+            answer: "Vitamin B",
+        },
     ];
 
     return (
         <>
             <div className="App">
             <h2 className="subtitle-font pl-2">Learn to Brew</h2>
+            
                 <Brewing101 />
             </div>
             <h2 className="subtitle-font pl-2">Beer Trivia</h2>
-            <div className="container mb-5">
-                <div className="row">
+            <div className="container mb-5 py-5 card-container">
+                <div className="row d-flex justify-content-around">
                     {trivia.map((question) => (
-                        <div className="flip-card m-2" key={question.question}>
+                        <div className="flip-card m-2 p-0" key={question.question}>
                             <div className="flip-card-inner">
                                 <div className="flip-card-front">
                                     <h5 className="p-3">{question.question}</h5>
