@@ -31,6 +31,21 @@ function Home() {
                 " In the early days, beer was only available to buy in kegs and bottles. Which brewery was the first to sell beer in cans in the United States?",
             answer: "Krueger Brewing Company, from Newark, New Jersey, who first sold beer in cans in 1935.",
         },
+        {
+            question:
+                "Where Is The Coors Brewing Company Located?",
+            answer: "Golden, Colorado",
+        },
+        {
+            question:
+                "What does IPA stand for?",
+            answer: "India Pale Ale",
+        },
+        {
+            question:
+                "Beer contains ample amounts of which vitamin?",
+            answer: "Vitamin B",
+        },
     ];
 
     return (
