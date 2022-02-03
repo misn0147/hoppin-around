@@ -14,7 +14,7 @@ code {
     monospace;
 }
 
-.nav-color {
+.nav-color, .dropdown-item:hover {
   background-color: #05386b;
 }
 
