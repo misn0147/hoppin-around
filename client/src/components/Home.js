@@ -52,7 +52,6 @@ function Home() {
         <>
             <div className="App">
             <h1 className="page-title-font pl-2 mt-2">Learn to Brew</h1>
-            
                 <Brewing101 />
             </div>
             <h1 className="page-title-font pl-2">Beer Trivia</h1>
