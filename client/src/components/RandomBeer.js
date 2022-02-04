@@ -10,11 +10,9 @@ function RandomBeer() {
         fetch("https://api.punkapi.com/v2/beers/random")
             .then((response) => response.json())
             .then((data) => {
-                console.log(data[0]);
                 setBeer(data[0]);
             })
             .catch(console.error);
-            console.log(beer);
     };
 
     return (
