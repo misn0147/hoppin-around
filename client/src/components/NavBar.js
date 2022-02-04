@@ -38,7 +38,7 @@ function NavBar() {
                                 Home
                             </Link>
                         </span>
-                        <li class="nav-item dropdown">
+                        <li className="nav-item dropdown">
                             <span
                                 className="nav-link dropdown-toggle h5"
                                 id="navbarDropdownMenuLink"
@@ -70,6 +70,15 @@ function NavBar() {
                                 </span>
                             </div>
                         </li>
+                        <span className="nav-item">
+                            <Link
+                                to="/randomBeer"
+                                className="nav-link mx-auto h5"
+                            >
+                                Beer Generator
+                            </Link>
+                        </span>
+
                         {userStatus ? (
                             <>
                                 <span className="nav-item">

@@ -13,6 +13,7 @@ import Jumbotron from "./components/Jumbotron";
 import AuthContext from "./contexts/AuthContext";
 import CoordinateSearch from "./components/CoordinatesSearch";
 import Home from "./components/Home";
+import RandomBeer from "./components/RandomBeer";
 
 function App() {
     const [userStatus, setUserStatus] = useState();
@@ -51,6 +52,13 @@ function App() {
                         <Route path="/locationSearch">
                             {userStatus?.user ? (
                                 <CoordinateSearch />
+                            ) : (
+                                <Redirect to="/login" />
+                            )}
+                        </Route>
+                        <Route path="/randomBeer">
+                            {userStatus?.user ? (
+                                <RandomBeer />
                             ) : (
                                 <Redirect to="/login" />
                             )}
