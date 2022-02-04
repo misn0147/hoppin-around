@@ -149,3 +149,16 @@ code {
 background-color: #E0D268;
 border-radius: 25px;
 }
+
+img {
+  width: 300px;
+  height: 150;
+}
+
+.beer-font{
+  font-family: 'Cairo', sans-serif;
+}
+
+li {
+  font-size: 1.25rem;
+}
