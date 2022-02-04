@@ -14,7 +14,7 @@ code {
     monospace;
 }
 
-.nav-color {
+.nav-color, .dropdown-item:hover {
   background-color: #05386b;
 }
 
@@ -148,4 +148,17 @@ code {
 .card-container {
 background-color: #E0D268;
 border-radius: 25px;
+}
+
+img {
+  width: 300px;
+  height: 150;
+}
+
+.beer-font{
+  font-family: 'Cairo', sans-serif;
+}
+
+li {
+  font-size: 1.25rem;
 }

@@ -38,25 +38,50 @@ function NavBar() {
                                 Home
                             </Link>
                         </span>
+                        <li className="nav-item dropdown">
+                            <span
+                                className="nav-link dropdown-toggle h5"
+                                id="navbarDropdownMenuLink"
+                                data-toggle="dropdown"
+                                aria-haspopup="true"
+                                aria-expanded="false"
+                            >
+                                Discover Breweries
+                            </span>
+                            <div
+                                className="dropdown-menu nav-color"
+                                aria-labelledby="navbarDropdownMenuLink"
+                            >
+                                <span className="dropdown-item nav-item">
+                                    <Link
+                                        to="/stateSearch"
+                                        className="nav-link mx-auto h5"
+                                    >
+                                        Search by State
+                                    </Link>
+                                </span>
+                                <span className="dropdown-item nav-item">
+                                    <Link
+                                        to="/locationSearch"
+                                        className="nav-link mx-auto h5"
+                                    >
+                                        Search by City
+                                    </Link>
+                                </span>
+                            </div>
+                        </li>
                         <span className="nav-item">
                             <Link
-                                to="/stateSearch"
+                                to="/randomBeer"
                                 className="nav-link mx-auto h5"
                             >
-                                Search by State
+                                Beer Generator
                             </Link>
                         </span>
-                        <span className="nav-item">
-                            <Link
-                                to="/locationSearch"
-                                className="nav-link mx-auto h5"
-                            >
-                                Search by City
-                            </Link>
-                        </span>
-                        {userStatus ? 
+
+                        {userStatus ? (
                             <>
-                            <span className="nav-item">
+                                <span className="nav-item">
                                     <span
                                         onClick={() => {
                                             setUserStatus(null);
@@ -67,8 +92,8 @@ function NavBar() {
                                         Log Out
                                     </span>
                                 </span>
-                                </>
-                        : 
+                            </>
+                        ) : (
                             <>
                                 <span className="nav-item">
                                     <Link
@@ -87,7 +112,7 @@ function NavBar() {
                                     </Link>
                                 </span>
                             </>
-                        }
+                        )}
                     </div>
                 </div>
             </nav>

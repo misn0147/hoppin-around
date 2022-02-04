@@ -1,5 +1,7 @@
-import {useState}  from "react";
+import {useState, useContext}  from "react";
 import { useHistory, Link } from "react-router-dom";
+import jwtDecode from 'jwt-decode';
+import AuthContext from "../contexts/AuthContext";
 
 function Register() {
 
@@ -9,6 +11,7 @@ function Register() {
         confirmPassword: "",
     });
     const [err, setErr] = useState();
+    const [, setUserStatus] = useContext(AuthContext);
 
     const history = useHistory();
 
@@ -27,15 +30,35 @@ function Register() {
             },
             body: JSON.stringify(user)
         }
-    
-        const response = await fetch("http://localhost:8080/user/create", init);
+        let response = await fetch("http://localhost:8080/user/create", init);
         if (response.status === 201) {
-            return Promise.resolve();
+            response = await fetch("http://localhost:8080/authenticate", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    username: user.username,
+                    password: user.password,
+                }),
+            });
+            if (response.status === 200) {
+                const { jwt } = await response.json();
+                localStorage.setItem("token", jwt);
+                setUserStatus({ user: jwtDecode(jwt) });
+                return Promise.resolve();
+            } else if (response.status === 400) {
+                const errors = await response.json();
+                setErr(errors);
+            } else if (response.status === 403) {
+                setErr(["Login failed."]);
+            } else {
+                setErr(["Unknown error."]);
+            }
         } else if (response.status === 400) {
             const messages = await response.json();
             return Promise.reject({ status: response.status, messages });
         }
-    
         return Promise.reject({ status: response.status });
     }
 
@@ -45,7 +68,7 @@ function Register() {
             setErr("passwords do not match");
         } else {
             createUser(user)
-                .then(() => history.push("/login"))
+                .then(() => history.push("/"))
                 .catch((err) => {
                     if (err.status === 400) {
                         setErr(err.messages[0]);

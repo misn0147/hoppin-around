@@ -4,7 +4,7 @@ function Jumbotron() {
     return (
         <>
             <div>
-                <div className="jumbotron py-5">
+                <div className="jumbotron py-4">
                     <div className="row no-gutters">
                         <div className="col-6 px-2">
                             <h1 className="display-3 title-font">
